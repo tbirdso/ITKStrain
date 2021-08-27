@@ -10,6 +10,17 @@ itk_wrap_class("itk::ImageToImageFilter" POINTER)
         "${ITKM_IV${p}${vector_dim}${d}}${ITKM_ICV${p}${d}${d}}"
         "${ITKT_IV${p}${vector_dim}${d}}, ${ITKT_ICV${p}${d}${d}}")
     endforeach()
+    
+    foreach(t ${WRAP_ITK_REAL})
+      message(STATUS "${ITKT_VI${t}${d}}, ${ITKT_ISSRTD${d}${d}}")
+      message(STATUS "${ITKT_VI${t}${d}}, ${ITKT_ICVD${d}${d}}")
+      itk_wrap_template(
+        "${ITKM_VI${t}${d}}${ITKM_ISSRTD${d}${d}}"
+        "${ITKT_VI${t}${d}}, ${ITKT_ISSRTD${d}${d}}")
+      itk_wrap_template(
+        "${ITKM_VI${t}${d}}${ITKM_ICVD${d}${d}}"
+        "${ITKT_VI${t}${d}}, ${ITKT_ICVD${d}${d}}")
+    endforeach()
   endforeach()
 itk_end_wrap_class()
 
@@ -20,6 +31,12 @@ itk_wrap_class("itk::StrainImageFilter" POINTER)
       itk_wrap_template(
         "${ITKM_IV${p}${vector_dim}${d}}${ITKM_${p}}${ITKM_${p}}"
         "${ITKT_IV${p}${vector_dim}${d}}, ${ITKT_${p}}, ${ITKT_${p}}")
+    endforeach()
+
+    foreach(t ${WRAP_ITK_REAL})
+      itk_wrap_template(
+        "${ITKM_VI${t}${d}}${ITKM_D}${ITKM_D}"
+        "${ITKT_VI${t}${d}}, ${ITKT_D}, ${ITKT_D}")
     endforeach()
   endforeach()
 itk_end_wrap_class()
